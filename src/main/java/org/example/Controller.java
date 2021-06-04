@@ -16,12 +16,12 @@ public class Controller {
     private URL location;
 
     @FXML
-    private TextField str1;
+    private TextField TextField1;
 
     @FXML
-    private TextField str2;
+    private TextField TextField2;
     @FXML
-    private ComboBox<String> Cbox;
+    private ComboBox<String> comboBox;
 
     @FXML
     void cash(ActionEvent event) {
@@ -31,15 +31,15 @@ public class Controller {
         } else if (!chekTextFieldNumber()) {
             u.messageBox("Ошибка", "Введена неверная сумма");
         } else {
-            if (Cbox.getValue().equals("Богатый клиент")) {
-                rich.get_cash(str1.getText(), Integer.parseInt(str2.getText()));
+            if (comboBox.getValue().equals("Богатый клиент")) {
+                rich.get_cash(TextField1.getText(), Integer.parseInt(TextField2.getText()));
                 u.messageBox("Богатый клиент", "Дорогой " + rich.get_name() + ", деньги в размере " + rich.get_money().get_summ() + "$ успешно сняты с вашего счета");
-            } else if (Cbox.getValue().equals("Бедный клиент")) {
-                poor.get_cash(str1.getText(), Integer.parseInt(str2.getText()));
+            } else if (comboBox.getValue().equals("Бедный клиент")) {
+                poor.get_cash(TextField1.getText(), Integer.parseInt(TextField2.getText()));
                 u.messageBox("Бедный клиент", "Клиент под именем " + poor.get_name() + ", деньги в размере " + poor.get_money().get_summ() + "$ успешно сняты с вашего счета");
             }
-            if (Cbox.getValue().equals("Студент")) {
-                student.get_cash(str1.getText(), Integer.parseInt(str2.getText()));
+            if (comboBox.getValue().equals("Студент")) {
+                student.get_cash(TextField1.getText(), Integer.parseInt(TextField2.getText()));
                 u.messageBox("Студент", "Студент под именем " + student.get_name() + ", деньги в размере " + student.get_money().get_summ() + "$ успешно сняты с вашего счета");
             }
         }
@@ -51,14 +51,14 @@ public class Controller {
     }
 
     public void setComboBox() {
-        Cbox.getItems().removeAll(Cbox.getItems());
-        Cbox.getItems().addAll("Богатый клиент", "Бедный клиент", "Студент");
-        Cbox.getSelectionModel().select("Студент");
+        comboBox.getItems().removeAll(comboBox.getItems());
+        comboBox.getItems().addAll("Богатый клиент", "Бедный клиент", "Студент");
+        comboBox.getSelectionModel().select("Студент");
     }
 
     public boolean chekTextFieldNumber() {
         try {
-            Integer.parseInt(str2.getText());
+            Integer.parseInt(TextField2.getText());
         } catch (Exception e) {
             return false;
         }
@@ -66,7 +66,7 @@ public class Controller {
     }
 
     public boolean chekTextFieldEmpty() {
-        if (str1.getText().equals("") || str2.getText().equals("")) {
+        if (TextField1.getText().equals("") || TextField2.getText().equals("")) {
             return true;
         }
         return false;
